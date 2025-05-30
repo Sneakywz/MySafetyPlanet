@@ -15,3 +15,5 @@ DELETE FROM users WHERE id = 4;
 
 -- Mise à jour d'un utilisateur
 UPDATE users SET roles = '["user", "admin"]' WHERE id = 2;
+
+ALTER TABLE users ADD remember_me VARCHAR(255) NULL;

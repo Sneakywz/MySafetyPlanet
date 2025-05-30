@@ -60,7 +60,25 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     $_SESSION["user_lastname"] = $user->getLastname();
     $_SESSION["user_roles"] = $user->getRoles();
 
+    if(isset($_POST["remember_me"])){
+        try {
+            // créer un token
+            $token = bin2hex(random_bytes(32));
+            // Le stocker le token en base de donnée pour l'utilisateur
+            $success = $userRepository->updateRememberMe($token, $user->getId());
+
+            if ($success) {
+                // Créer un cookie -> nom => valeur
+                // time() correspond au nombre de second depuis le 1 janvier 1970
+                $expiredAt = time() + (7 * 24 * 60 * 60); // le cookie duree 7 jours
+                setcookie("remember_me", $token, $expiredAt, "/", "", true, false);
+            }
+        } catch (\Exception $e) {
+            // Ne rien faire
+        }
+    }
 
     // Redirection vers la page d'accueil
     header("Location: ../index.php");
+    exit;
 }

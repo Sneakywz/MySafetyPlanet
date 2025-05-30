@@ -12,6 +12,8 @@
             <label for="password">Mot de passe :</label>
             <input type="password" id="password" name="password" required>
             <button type="submit">Se connecter</button>
+            <label for="remember_me">Se souvenir de moi </label>
+            <input type="checkbox" id="remember_me" name="remember_me">
         </form>
     </section>
 

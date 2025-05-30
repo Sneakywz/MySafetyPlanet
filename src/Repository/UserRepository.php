@@ -83,4 +83,49 @@ class UserRepository {
 
         return $users;
     }
+
+    public function findOneById(int $userId): ?User
+    {
+        $result = $this->db->query("SELECT * FROM users WHERE id = :id", [
+            'id' => $userId
+        ]);
+
+        if ($result[0]) {
+            return User::hydrate($result[0]);
+        }
+
+        return null;
+    }
+
+    public function updateRememberMe(string $token, int $userId): bool
+    {
+        $user = $this->findOneById($userId);
+
+        if (!$user) {
+            throw new \Exception("Cet utilisateur n'existe pas");
+        }
+
+        $this->db->query("UPDATE users SET remember_me = :token WHERE id= :userId", [
+            'token' => $token,
+            'userId' => $userId,
+        ]);
+
+        return true;
+    }
+
+    /**
+     * Récupérer l'utilisateur qui possède le token remember_me
+     */
+    public function findOneByTokenRememberMe(string $token): ?User
+    {
+        $result = $this->db->query("SELECT * FROM users WHERE remember_me = :token", [
+            'token' => $token
+        ]);
+
+        if ($result[0]) {
+            return User::hydrate($result[0]);
+        }
+
+        return null;
+    }
 }
