@@ -1,0 +1,207 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    color: #444;
+}
+
+header {
+    text-align: center;
+}
+
+/* Bannière */
+.banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    /* Hauteur fixe pour le banner */
+    overflow: hidden;
+    /* Cache le débordement de l'image */
+    position: relative;
+    /* Ajoutez ceci pour positionner l'image correctement */
+}
+
+.banner img {
+    width: 100%;
+    /* Assurez-vous que l'image occupe toute la largeur */
+    height: 100%;
+    /* Assurez-vous que l'image occupe toute la hauteur */
+    object-fit: cover;
+    /* Couvre entièrement le conteneur */
+    filter: brightness(0.5) sepia(0.5) hue-rotate(85deg) saturate(3);
+    /* Filtre vert transparent */
+}
+/*-------------------------------------*/
+
+/* NavBar */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 1rem auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Fond semi-transparent */
+    backdrop-filter: blur(10px);
+    /* Ajoute un effet de flou pour un look moderne */
+    padding: 0.5rem 0;
+    /* Ajoutez un peu de padding pour l'espacement interne */
+    border-radius: 8px;
+    /* Bordures arrondies pour un look moderne */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Ombre subtile */
+}
+
+nav a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.75rem 1rem;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: rgba(76, 175, 80, 0.2);
+}
+/*------------------------------------------------*/
+
+/*Box index.php*/
+#box-section {
+    padding: 2rem;
+    max-width: 900px;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+}
+
+#publics {
+    padding: 2rem;
+    max-width: 900px;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+}
+
+#contact {
+    padding: 2rem;
+    max-width: 900px;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+}
+
+#notre-mission {
+    padding: 2rem;
+    max-width: 900px;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+}
+
+#qui-sommes-nous {
+    padding: 2rem;
+    max-width: 900px;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+}
+/*------------------------------------------*/
+
+h2 {
+    color: #4CAF50;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.public-card {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-left: 4px solid #4CAF50;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    width: 100%;
+    margin-top: auto;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Styles spécifiques au formulaire de connexion */
+.titre-centré {
+    text-align: center;
+}
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    /* Centrer le formulaire */
+}
+
+.login-form label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.login-form input {
+    margin-bottom: 1.5rem;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.login-form input:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.login-form button {
+    padding: 0.75rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-form button:hover {
+    background-color: #45a049;
+}
+/*------------------------------------------------------------*/
