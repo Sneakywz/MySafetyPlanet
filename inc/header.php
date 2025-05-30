@@ -2,14 +2,34 @@
 
 require_once __DIR__ .'/../autoload.php';
 
+use src\Entity\Db;
 use src\Service\Authentification;
+use src\Repository\UserRepository;
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+$db = new Db();
+$userRepository = new UserRepository($db);
 $authentificationService = new Authentification();
 
+// Si pas connecté et que l'on possède le cookie remember_token alors réaliser la connexion
+if(!isset($_SESSION["user_id"]) && isset($_COOKIE["remember_me"])) {
+    // vérifier que le cookie de l'utilisateur est le même que en bdd
+    $cookie = $_COOKIE["remember_me"];
+    $user = $userRepository->findOneByTokenRememberMe($cookie);
+
+    // Si nous n'avons pas de user ne rien faire
+    if($user) {
+        // Alors on connecte l'utilisateur
+        $_SESSION["user_id"] = $user->getId();
+        $_SESSION["user_email"] = $user->getEmail();
+        $_SESSION["user_firstname"] = $user->getFirstname();
+        $_SESSION["user_lastname"] = $user->getLastname();
+        $_SESSION["user_roles"] = $user->getRoles();
+    };
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
