@@ -47,7 +47,8 @@ class UserRepository {
             ]
         );
         // Si le résultat est un tableau, on hydrate l'objet User (on transforme le tableau en objet)
-        if ($result[0]) {
+        if (isset($result[0])) {
+
             // La fonction hydrate est static, cela signifie quelle est lié à la class et non à l'objet
             return User::hydrate($result[0]);
         }
@@ -127,5 +128,26 @@ class UserRepository {
         }
 
         return null;
+    }
+
+    public function updateUser(User $user): void
+    {
+        $this->db->query(
+            "UPDATE users SET 
+                firstname = :firstname,
+                lastname = :lastname,
+                email = :email,
+                password = :password,
+                roles = :roles
+            WHERE id = :id",
+            [
+                'id' => $user->getId(),
+                'firstname' => $user->getFirstname(),
+                'lastname' => $user->getLastname(),
+                'email' => $user->getEmail(),
+                'password' => $user->getPassword(),
+                'roles' => json_encode($user->getRoles()),
+            ]
+        );
     }
 }

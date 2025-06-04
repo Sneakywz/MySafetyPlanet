@@ -14,21 +14,20 @@
     $db = new Db();
     $userRepository = new UserRepository($db);
     $users = $userRepository->findAll();
-    dd($users);
 ?>
 
-    <h1>Administration</h1>
+    <h1 style="text-align: center;">Administration</h1>
 
-    <ul>
-        <?php foreach($users as $user):?>
-        <li>
-            prénom : <?= $user->getFirstname();?>
-        </li>
-        <li>
-            nom : <?= $user->getLastname();?>
-        </li>
-        <?php endforeach;?>
-    </ul>
+
+<div class="admin-container">
+    <?php foreach($users as $user): ?>
+        <div class="user-card">
+            <p><strong>Prénom :</strong> <?= $user->getFirstname(); ?></p>
+            <p><strong>Nom :</strong> <?= $user->getLastname(); ?></p>
+        </div>
+    <?php endforeach; ?>
+</div>
+
 <?php
     require_once 'inc/footer.php';
 ?>

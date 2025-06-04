@@ -46,14 +46,6 @@ if(!isset($_SESSION["user_id"]) && isset($_COOKIE["remember_me"])) {
             <img src="img/logo-banniere.jpg" alt="Bannière MySafetyPlanet">
         </div>
 
-        <?php if (isset($_SESSION['user_id'])) : ?>
-            <h1>
-                <?= "Bonjour " . $_SESSION['user_firstname'] . " " . $_SESSION['user_lastname']; ?>
-            </h1>
-        <?php else : ?>
-            <h1>Bienvenue sur MySafetyPlanet</h1>
-        <?php endif; ?>
-
         <nav>
             <a href="index.php">Accueil</a>
             <a href="entreprise.php">Vous êtes une entreprise</a>
@@ -61,6 +53,7 @@ if(!isset($_SESSION["user_id"]) && isset($_COOKIE["remember_me"])) {
             <a href="collectivite.php">Vous êtes une collectivité</a>
             <?php if (isset($_SESSION['user_id'])) : ?>
                 <a href="logout.php">Déconnexion</a>
+                <a href="profile.php">Mon Profile</a>
                 <?php if($authentificationService->hasRole('admin')): ?>
                     <a href="admin.php">Administration</a>
                 <?php endif; ?>
@@ -69,4 +62,13 @@ if(!isset($_SESSION["user_id"]) && isset($_COOKIE["remember_me"])) {
                 <a href="creer-compte.php">Créer un compte</a>
             <?php endif; ?>
         </nav>
+
+         <?php if (isset($_SESSION['user_id'])) : ?>
+            <h1>
+                <?= "Bonjour " . $_SESSION['user_firstname'] . " " . $_SESSION['user_lastname']; ?>
+            </h1>
+        <?php else : ?>
+            <h1>Bienvenue sur MySafetyPlanet</h1>
+        <?php endif; ?>
+
     </header>

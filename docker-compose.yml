@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: blog_cours
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - mysqldata:/var/lib/mysql
+    networks:
+      - mynetwork
+
+volumes:
+  mysqldata:
+
+networks:
+  mynetwork:
