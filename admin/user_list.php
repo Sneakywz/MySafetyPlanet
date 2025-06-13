@@ -41,11 +41,14 @@
         </div>
         <div>
             <?php if(!$authentificationService->hasRole("superadmin", $user->getRoles())) : ?>
-                <a href="<?='../src/Controller/deleteUser.php?id=' . $user->getId(); ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer cette utilisateur ?');">Supprimer</a>
+                <?php if($user->getId() !== $_SESSION["user_id"]) : ?>
+                    <a href="<?='../src/Controller/deleteUser.php?id=' . $user->getId(); ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer cette utilisateur ?');">
+                        Supprimer
+                    </a>
+                <?php endif; ?>
                 <a href="<?= 'user_form.php?id=' . $user->getId(); ?>">Modifier</a>
             <?php endif; ?>
         </div>
-        <hr>
     <?php endforeach; ?>
 </div>
 

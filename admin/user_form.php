@@ -23,7 +23,11 @@
         $lastname = htmlspecialchars($_POST["lastname"]);
         $email = htmlspecialchars($_POST["email"]);
 
+        // ça on le reçois uniquement si on est superadmin
+        $role = isset($_POST["role"]) ? htmlspecialchars($_POST["role"]) : null; // user OU admin
+
         $user = $userRepository->findOneById($id);
+        $roles = $user?->getRoles() ?? [];
 
         // vérifier que l'email n'est pas déjà utilisé
         // Récupérer l'utilisateur de la bdd avec cette email
@@ -40,6 +44,21 @@
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo "L'adresse e-mail n'est pas valide.";
             exit;
+        }
+
+        // Si nous avons le role et que l'utilisateur connecté est superadmin, on peut changer le rôle
+        if($role && $authentificationService->hasRole("superadmin", $_SESSION["user_roles"])){
+            if(!in_array($role, ["user", "admin"])) {
+                echo "Le rôle n'est pas valide";
+                exit;
+            }
+
+            $roles = ["user"];
+
+            // Quoi qu'il arrive nous avons user dans les roles et si on est admin, on ajoute admin
+            if($role === "admin"){
+                $roles[] = "admin";
+            }
         }
 
         if (!$isEditing) {
@@ -72,6 +91,7 @@
             $user->setFirstname($firstname);
             $user->setLastname($lastname);
             $user->setEmail($email);
+            $user->setRoles($roles);
 
             $userRepository->updateUser($user);
         } else {
@@ -80,7 +100,7 @@
             $user->setLastname($lastname);
             $user->setEmail($email);
             $user->setPassword(password_hash($password, PASSWORD_BCRYPT));
-            $user->setRoles(["user"]);
+            $user->setRoles($roles);
 
             $userRepository->create($user);
         }
@@ -115,19 +135,20 @@
             <input type="password" id="password_verify" placeholder="Mot de passe" name="password_verify">
         <?php endif; ?>
 
+        <?php if($authentificationService->hasRole("superadmin", $_SESSION["user_roles"])) : ?>
+            <label for="role">Rôle</label>
+            <select name="role" id="role">
+                <option value="user">Utilisateur</option>
+                <option value="admin" <?= in_array("admin", $user?->getRoles() ?? []) ? "selected" :  ""; ?> >
+                    Administrateur
+                </option>
+            </select>
+        <?php endif; ?>
+
         <button type="submit"><?= $isEditing ? "Modifier" : "Créer"; ?></button>
     </form>
 
 <?php
-
-    // <?php if($authentificationService->hasRole("superadmin", $_SESSION["user_roles"])) : 
-    //     <label for="role">Rôle</label>
-    //     <select name="role" id="role">
-    //         <option value="user">Utilisateur</option>
-    //         <option value="admin">Administrateur</option>
-    //     </select>
-    // <?php endif;
-
     require_once '../inc/admin/footer.php';
 ?>
 
