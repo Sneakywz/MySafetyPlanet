@@ -8,8 +8,8 @@ use PDOException;
 class Db
 {
     private $host = "db";
-    private $username = "user";
-    private $password = "password";
+    private $username = "root";
+    private $password = "root";
     private $dbName = "blog_cours";
     public $pdo;
 

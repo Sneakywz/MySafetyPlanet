@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ .'/../autoload.php';
+require_once __DIR__ .'/../../autoload.php';
 
 use src\Entity\Db;
 use src\Service\Authentification;
@@ -37,29 +37,29 @@ if(!isset($_SESSION["user_id"]) && isset($_COOKIE["remember_me"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MySafetyPlanet - Accueil</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 
     <header>
         <div class="banner">
-            <img src="img/logo-banniere.jpg" alt="Bannière MySafetyPlanet">
+            <img src="../img/logo-banniere.jpg" alt="Bannière MySafetyPlanet">
         </div>
 
         <nav>
-            <a href="index.php">Accueil</a>
-            <a href="entreprise.php">Vous êtes une entreprise</a>
-            <a href="particulier.php">Vous êtes un particulier</a>
-            <a href="collectivite.php">Vous êtes une collectivité</a>
+            <a href="../index.php">Accueil</a>
+            <a href="../entreprise.php">Vous êtes une entreprise</a>
+            <a href="../particulier.php">Vous êtes un particulier</a>
+            <a href="../collectivite.php">Vous êtes une collectivité</a>
             <?php if (isset($_SESSION['user_id'])) : ?>
-                <a href="profile.php">Mon Profile</a>
-                <a href="logout.php">Déconnexion</a>
+                <a href="../profile.php">Mon Profile</a>
+                <a href="../logout.php">Déconnexion</a>
                 <?php if($authentificationService->hasUserRole('admin')): ?>
-                    <a href="admin/dashboard.php">Administration</a>
+                    <a href="../admin/dashboard.php">Administration</a>
                 <?php endif; ?>
             <?php else : ?>
-                <a href="login.php">Connexion</a>
-                <a href="creer-compte.php">Créer un compte</a>
+                <a href="../login.php">Connexion</a>
+                <a href="../creer-compte.php">Créer un compte</a>
             <?php endif; ?>
         </nav>
 

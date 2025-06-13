@@ -91,7 +91,7 @@ class UserRepository {
             'id' => $userId
         ]);
 
-        if ($result[0]) {
+        if (count($result) > 0) {
             return User::hydrate($result[0]);
         }
 
