@@ -15,8 +15,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: blog_cours
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
     ports:
       - 6900:3306  
     volumes:

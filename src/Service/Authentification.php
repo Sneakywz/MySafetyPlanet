@@ -21,6 +21,9 @@ class Authentification
         return in_array($role, $roles);
     }
     
+    public function isAuthenticated() : bool {
+         return isset($_SESSION["user_id"]);
+    }
     /**
      *  Protège une page en exigeant un rôle spécifique.
      *  Redirige vers une page d'accès refusé si l'utilisateur ne possède pas ce rôle.

@@ -5,7 +5,7 @@
     use src\Entity\Db;
     use src\Repository\UserRepository;
     use src\Enum\UserRolesEnum;
-    
+    use src\Service\CsrfToken;
 
     $authentificationService = new Authentification();
     $authentificationService->requireRole('admin');
@@ -16,6 +16,8 @@
     $db = new Db();
     $userRepository = new UserRepository($db);
     $users = $userRepository->findAll();
+
+    $crsfToken = new CsrfToken();
 ?>
 
       <section id="box-section">
@@ -42,9 +44,15 @@
         <div>
             <?php if(!$authentificationService->hasRole("superadmin", $user->getRoles())) : ?>
                 <?php if($user->getId() !== $_SESSION["user_id"]) : ?>
-                    <a href="<?='../src/Controller/deleteUser.php?id=' . $user->getId(); ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer cette utilisateur ?');">
-                        Supprimer
-                    </a>
+                    <?php $token = $crsfToken->generate("user_delete_" . $user->getId()); ?>
+
+                    <form action="../src/Controller/deleteUser.php" method="post">
+                        <input type="hidden" name="id" value="<?= $user->getId(); ?>">
+                        <input type="hidden" name="csrf_token" value="<?= $token ?>">
+                        <button type="submit" onclick="return confirm('Etes-vous sûr de vouloir supprimer cette utilisateur ?');">
+                            Supprimer
+                        </button>
+                    </form>
                 <?php endif; ?>
                 <a href="<?= 'user_form.php?id=' . $user->getId(); ?>">Modifier</a>
             <?php endif; ?>
@@ -53,8 +61,6 @@
 </div>
 
 <?php
-
-
     require_once '../inc/admin/footer.php';
 ?>
 

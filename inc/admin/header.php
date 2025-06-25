@@ -51,8 +51,9 @@ if(!isset($_SESSION["user_id"]) && isset($_COOKIE["remember_me"])) {
             <a href="../entreprise.php">Vous êtes une entreprise</a>
             <a href="../particulier.php">Vous êtes un particulier</a>
             <a href="../collectivite.php">Vous êtes une collectivité</a>
+            <a href="../articles.php">Nos articles</a>
             <?php if (isset($_SESSION['user_id'])) : ?>
-                <a href="../profile.php">Mon Profile</a>
+                <a href="../profile.php">Mon Profil</a>
                 <a href="../logout.php">Déconnexion</a>
                 <?php if($authentificationService->hasUserRole('admin')): ?>
                     <a href="../admin/dashboard.php">Administration</a>

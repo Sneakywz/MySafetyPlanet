@@ -2,6 +2,9 @@
     require_once '../inc/admin/header.php';
 
     use src\Entity\User;
+    use src\Service\CsrfToken;
+
+    $csrfToken = new CsrfToken();
 
     $isEditing = isset($_GET["id"]); // Si l'id est présent, on est en mode édition sinon en mode ajout
 
@@ -22,6 +25,12 @@
         $firstname = htmlspecialchars($_POST["firstname"]);
         $lastname = htmlspecialchars($_POST["lastname"]);
         $email = htmlspecialchars($_POST["email"]);
+        $tokenCsrf = $_POST["csrf_token"];
+
+        if (!$csrfToken->isValid($tokenCsrf, "user_form")) {
+            echo "Le token CSRF n'est pas valide.";
+            exit;
+        }
 
         // ça on le reçois uniquement si on est superadmin
         $role = isset($_POST["role"]) ? htmlspecialchars($_POST["role"]) : null; // user OU admin
@@ -107,6 +116,8 @@
 
         // header("Location: user_form.php");
     }
+
+    $token = $csrfToken->generate("user_form");
 ?>
 
     <section id="box-section">
@@ -116,6 +127,7 @@
     <a href="user_list.php">Retour à la liste des utilisateurs</a>
 
     <form action="" method="POST">
+        <input type="hidden" name="csrf_token" value="<?= $token; ?>">
         <input type="hidden" name="id" value="<?= $isEditing ? $user->getId() : ''; ?>">
 
         <label for="firstname">Prénom</label>
