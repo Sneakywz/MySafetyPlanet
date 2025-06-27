@@ -36,40 +36,88 @@ if(!isset($_SESSION["user_id"]) && isset($_COOKIE["remember_me"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MySafetyPlanet - Accueil</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>MySafetyPlanet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/js/navbar.js" defer></script>
 </head>
 <body>
 
-    <header>
-        <div class="banner">
-            <img src="img/logo-banniere.jpg" alt="Bannière MySafetyPlanet">
+    <header class="header">
+        <div class="header_banner">
+            <img src="assets/img/logo-banniere.jpg" alt="Bannière MySafetyPlanet">
         </div>
 
-        <nav>
-            <a href="index.php">Accueil</a>
-            <a href="entreprise.php">Vous êtes une entreprise</a>
-            <a href="particulier.php">Vous êtes un particulier</a>
-            <a href="collectivite.php">Vous êtes une collectivité</a>
-            <a href="articles.php">Nos articles</a>
-            <?php if (isset($_SESSION['user_id'])) : ?>
-                <a href="profile.php">Mon Profil</a>
-                <a href="logout.php">Déconnexion</a>
-                <?php if($authentificationService->hasUserRole('admin')): ?>
-                    <a href="admin/dashboard.php">Administration</a>
+        <nav id="navbar">
+            <div id="burger"><i class="fa-solid fa-bars"></i></div>
+            <ul>
+                <li>
+                    <a href="index.php">
+                        <i class="fa-solid fa-house"></i>Accueil
+                    </a>
+                </li>
+                <li>
+                    <a href="entreprise.php">
+                        <i class="fa-solid fa-building"></i> 
+                        Vous êtes une entreprise
+                    </a>
+                </li>
+                <li>
+                    <a href="particulier.php">
+                        <i class="fa-solid fa-person-shelter"></i>
+                        Vous êtes un particulier
+                    </a>
+                </li>
+                <li>
+                    <a href="collectivite.php">
+                        <i class="fa-solid fa-people-group"></i>
+                        Vous êtes une collectivité
+                    </a>
+                </li>
+                <li>
+                    <a href="articles.php">
+                        <i class="fa-regular fa-newspaper"></i>
+                        Nos articles
+                    </a>
+                </li>
+                <?php if (isset($_SESSION['user_id'])) : ?>
+                    <li>
+                        <a href="profile.php" title="Mon Profil">
+                            <i class="fa-solid fa-user"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="logout.php" title="Déconnexion">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </a>
+                    </li>
+                    <?php if($authentificationService->hasUserRole('admin')): ?>
+                        <li>
+                            <a href="admin/dashboard.php" title="Administration">
+                                <i class="fa-solid fa-screwdriver-wrench"></i>
+                            </a>
+                        </li>
+                    <?php endif; ?>
+                <?php else : ?>
+                    <li>
+                        <a href="login.php" title="Connexion"> 
+                            <i class="fa-solid fa-right-to-bracket"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="creer-compte.php" title="Créer un compte">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </a>
+                    </li>
                 <?php endif; ?>
-            <?php else : ?>
-                <a href="login.php">Connexion</a>
-                <a href="creer-compte.php">Créer un compte</a>
-            <?php endif; ?>
+            </ul>
         </nav>
 
-         <?php if (isset($_SESSION['user_id'])) : ?>
-            <h1>
+        <?php if (isset($_SESSION['user_id'])) : ?>
+            <h1 class="header_welcome">
                 <?= "Bonjour " . $_SESSION['user_firstname'] . " " . $_SESSION['user_lastname']; ?>
             </h1>
         <?php else : ?>
-            <h1>Bienvenue sur MySafetyPlanet</h1>
+            <h1 class="header_welcome">Bienvenue sur MySafetyPlanet</h1>
         <?php endif; ?>
-
     </header>

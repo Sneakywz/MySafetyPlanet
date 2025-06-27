@@ -59,7 +59,7 @@
     }
 ?>
 
-    <section id="box-section">
+    <section>
         <h2><?= $isEditing ? "Modifier" : "Créer"; ?> un article</h2>
     </section>
 

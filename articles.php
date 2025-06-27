@@ -13,7 +13,7 @@
         <h1><?= $article->getTitle(); ?></h1>
         <p><?= "Créer le " . $article->getCreatedAt()->format("d/m/Y H:i") . " par " . $article->getUser()->getFirstname(); ?></p>
         <p><?= "Dernière mise à jour le " . $article->getUpdatedAt()->format("d/m/Y H:i"); ?> </p>
-        <a href="<?= 'article_show.php?id=' . $article->getId(); ?>">
+        <a class="btn_dashboard" href="<?= 'article_show.php?id=' . $article->getId(); ?>">
             Voir
         </a>
     </article>

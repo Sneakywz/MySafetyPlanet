@@ -21,20 +21,20 @@
     $crsfToken = new CsrfToken();
 ?>
 
-      <section id="box-section">
-        <h2>Publication des Articles</h2>
+      <section>
+        <h2 class="titre_section">Publication des Articles</h2>
        </section>
 
 
 <div class="admin-container">
-    <a href="article_form.php">Créer un article</a>
+    <a class="btn_dashboard" href="article_form.php">Créer un article</a>
     <?php foreach($articles as $article): ?>
-        <div class="article-card">
+        <div class="admin-card">
             <p><strong><?= $article->getTitle(); ?></strong></p>
             <p><strong>Créé le :</strong> <?= $article->getCreatedAt()->format("d/m/Y H:i"); ?></p>
             <p><strong>Créé par :</strong> <?= $article->getUser()->getFirstname() . " " . $article->getUser()->getLastname(); ?></p>
         </div>
-        <div>
+        <div class="admin-actions">
             <?php if($authentificationService->hasRole("superadmin", $_SESSION["user_roles"] )) : ?>
                 <?php $token = $crsfToken->generate("article_delete_" . $article->getId()); ?>
                 <form action="../src/Controller/deleteArticle.php" method="post">
@@ -46,8 +46,8 @@
                 </form>
             <?php endif; ?>
 
-            <a href="<?= 'article_form.php?id=' . $article->getId(); ?>">Modifier</a>
-            <a href="<?= '../article_show.php?id=' . $article->getId(); ?>">Voir</a>
+            <a class="btn_dashboard" href="<?= 'article_form.php?id=' . $article->getId(); ?>">Modifier</a>
+            <a class="btn_dashboard" href="<?= '../article_show.php?id=' . $article->getId(); ?>">Voir</a>
         </div>
     <?php endforeach; ?>
 </div>

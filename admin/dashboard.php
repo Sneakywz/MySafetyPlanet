@@ -2,13 +2,13 @@
     require_once '../inc/admin/header.php';
 ?>
 
-    <section id="box-section">
-        <h2>Administration</h2>
+    <section>
+        <h2 class="titre_section">Administration</h2>
     </section>
 
     <div class="admin-container">
-        <a href="user_list.php">Gestion des utilisateurs</a>
-        <a href="article_list.php">Publication</a>
+        <a class="btn_dashboard" href="user_list.php">Gestion des utilisateurs</a>
+        <a class="btn_dashboard" href="article_list.php">Publication</a>
     </div>
 
 <?php

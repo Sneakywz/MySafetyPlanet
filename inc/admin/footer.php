@@ -1,5 +1,5 @@
     <footer>
-        <p>&copy; 2025 MySafetyPlanet. Tous droits réservés.</p>
+        <p>&copy; Create by Maxime Nectoux</p>
     </footer>
 </body>
 </html>

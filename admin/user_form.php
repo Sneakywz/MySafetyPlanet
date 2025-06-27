@@ -120,12 +120,12 @@
     $token = $csrfToken->generate("user_form");
 ?>
 
-    <section id="box-section">
-        <h2><?= $isEditing ? "Modifier" : "Créer"; ?> un utilisateur</h2>
+    <section>
+        <h2 class="titre_section"> <?= $isEditing ? "Modifier" : "Créer"; ?> un utilisateur</h2>
     </section>
-
-    <a href="user_list.php">Retour à la liste des utilisateurs</a>
-
+    <div class="back_to_admin">
+        <a class="btn_dashboard" href="user_list.php">Retour à la liste des utilisateurs</a>
+    </div>
     <form action="" method="POST">
         <input type="hidden" name="csrf_token" value="<?= $token; ?>">
         <input type="hidden" name="id" value="<?= $isEditing ? $user->getId() : ''; ?>">

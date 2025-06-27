@@ -20,15 +20,15 @@
     $crsfToken = new CsrfToken();
 ?>
 
-      <section id="box-section">
-        <h2>Administration</h2>
+      <section>
+        <h2 class="titre_section">Administration</h2>
        </section>
 
 
-<div class="admin-container">
-    <a href="user_form.php">Créer un utilisateur</a>
+<div class="admin_user-list">
+    <a class="btn_dashboard" href="user_form.php">Créer un utilisateur</a>
     <?php foreach($users as $user): ?>
-        <div class="user-card">
+        <div class="admin-card">
             <p><strong>Prénom :</strong> <?= $user->getFirstname(); ?></p>
             <p><strong>Nom :</strong> <?= $user->getLastname(); ?></p>
             <p><strong>Email :</strong> <?= $user->getEmail(); ?></p>
@@ -41,7 +41,7 @@
                 </ul>
             </p>
         </div>
-        <div>
+        <div class="admin-actions">
             <?php if(!$authentificationService->hasRole("superadmin", $user->getRoles())) : ?>
                 <?php if($user->getId() !== $_SESSION["user_id"]) : ?>
                     <?php $token = $crsfToken->generate("user_delete_" . $user->getId()); ?>
@@ -54,7 +54,7 @@
                         </button>
                     </form>
                 <?php endif; ?>
-                <a href="<?= 'user_form.php?id=' . $user->getId(); ?>">Modifier</a>
+                <a class="btn_dashboard" href="<?= 'user_form.php?id=' . $user->getId(); ?>">Modifier</a>
             <?php endif; ?>
         </div>
     <?php endforeach; ?>

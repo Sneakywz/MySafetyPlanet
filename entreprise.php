@@ -2,9 +2,9 @@
     require_once 'inc/header.php';
 ?>
 
-    <section id="box-section">
-        <h2>Conseils pour les Entreprises</h2>
-        <p>Découvrez comment intégrer des pratiques durables dans vos opérations quotidiennes pour réduire votre impact environnemental et améliorer votre efficacité.</p>
+    <section>
+        <h2 class="titre_section">Conseils pour les Entreprises</h2>
+        <p class="texte_section">Découvrez comment intégrer des pratiques durables dans vos opérations quotidiennes pour réduire votre impact environnemental et améliorer votre efficacité.</p>
     </section>
 
 <?php

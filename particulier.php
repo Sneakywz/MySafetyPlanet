@@ -2,9 +2,9 @@
     require_once 'inc/header.php';
 ?>
 
-    <section id="box-section">
-        <h2>Conseils pour les Particuliers</h2>
-        <p>Adoptez un mode de vie plus écologique avec nos conseils pratiques pour la maison, le travail et vos déplacements.</p>
+    <section>
+        <h2 class="titre_section">Conseils pour les Particuliers</h2>
+        <p class="texte_section">Adoptez un mode de vie plus écologique avec nos conseils pratiques pour la maison, le travail et vos déplacements.</p>
     </section>
 
 <?php
