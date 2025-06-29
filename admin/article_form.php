@@ -60,10 +60,10 @@
 ?>
 
     <section>
-        <h2><?= $isEditing ? "Modifier" : "Créer"; ?> un article</h2>
+        <h2 class="titre_section"><?= $isEditing ? "Modifier" : "Créer"; ?> un article</h2>
     </section>
 
-    <a href="article_list.php">Retour à la liste des articles</a>
+    <a class="btn_dashboard" href="article_list.php">Retour à la liste des articles</a>
 
     <form action="" method="POST">
         <input type="hidden" name="id" value="<?= $isEditing ? $article->getId() : ''; ?>">
